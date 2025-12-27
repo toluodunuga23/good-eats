@@ -1,35 +1,54 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
-
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
-
+import {View, Text} from 'react-native'
+import { Link, Tabs } from 'expo-router'
+import { Ionicons } from '@expo/vector-icons'
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-      }}>
-      <Tabs.Screen
-        name="index"
+    <Tabs 
+    screenOptions={{
+      tabBarActiveTintColor: "#E95322",
+      tabBarInactiveTintColor: "#000000",
+    }}
+    >
+    <Tabs.Screen
+    name ="index"
+    options={{
+      title: "Home",
+      headerShown: false,
+      tabBarIcon: ({ color }) => (
+        <Ionicons name="home-outline" size={28} color={color} />
+      ),
+    }}
+    />
+           {/* <Tabs.Screen
+        name="pantry"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          title: "Pantry",
+          headerShown: false,
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="list-outline" size={28} color={color} />
+          ),
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="recipes"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: "Recipes",
+          headerShown: false,
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="restaurant-outline" size={28} color={color} />
+          ),
+        }}
+      /> */}
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: "Profile",
+          headerShown: false,
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="person-outline" size={28} color={color} />
+          ),
         }}
       />
     </Tabs>
-  );
+  )
 }
