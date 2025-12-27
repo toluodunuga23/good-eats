@@ -9,13 +9,14 @@ import {
 } from "react-native";
 import { Link } from "expo-router";
 import { styles } from "../styles/home.styles";
+import "../app/global.css";
 
 export default function Index() {
   return (
-    <View style={styles.container}>
+    <View className="flex-1 items-center justify-center">
       {/* <Text style={styles.text}>Hello World</Text> */}
       <Link href="/profile">
-        <Text style={styles.text}>Profile</Text>
+        <Text className="text-blue-500">Profile</Text>
       </Link>
     </View>
 
