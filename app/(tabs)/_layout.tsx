@@ -1,6 +1,5 @@
-import {View, Text} from 'react-native'
-import { Link, Tabs } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons'
+import { Tabs } from 'expo-router'
 export default function TabLayout() {
   return (
     <Tabs 
@@ -16,6 +15,26 @@ export default function TabLayout() {
       headerShown: false,
       tabBarIcon: ({ color }) => (
         <Ionicons name="home-outline" size={28} color={color} />
+      ),
+    }}
+    />
+    <Tabs.Screen
+    name="grocery"
+    options={{
+      title: "Grocery",
+      headerShown: false,
+      tabBarIcon: ({ color }) => (
+        <Ionicons name="cart-outline" size={28} color={color} />
+      ),
+    }}
+    />
+    <Tabs.Screen
+    name="pantry"
+    options={{
+      title: "Pantry",
+      headerShown: false,
+      tabBarIcon: ({ color }) => (
+        <Ionicons name="restaurant-outline" size={28} color={color} />
       ),
     }}
     />

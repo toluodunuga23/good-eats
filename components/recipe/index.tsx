@@ -1,7 +1,7 @@
 
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useState } from "react";
-import { Alert, Image, Text, TouchableOpacity, View } from "react-native";
+import { Alert, Image, Text, TouchableOpacity, View , Pressable } from "react-native";
 import "../../app/global.css";
 import { Recipe } from "../../types/receipe";
 
@@ -9,10 +9,12 @@ export const RecipeCard = ({
   recipe,
   userId = "default-user",
   updateFavorites,
+  openModal,
 }: {
   recipe: Recipe;
   userId?: string;
   updateFavorites: (recipeId: string, newStatus: boolean) => void;
+  openModal: (recipeName: string) => void;
 }) => {
   // Check if the current user has favorited this recipe
   const initialFavorited =
@@ -110,7 +112,7 @@ export const RecipeCard = ({
       </View>
 
       {/* Content */}
-      <View className="p-4 space-y-3">
+      <Pressable className="p-4 space-y-3" onPress={() => openModal(recipe.name)}>
         <View>
           <Text
             className="text-lg font-bold text-gray-900 leading-tight mb-1"
@@ -142,7 +144,7 @@ export const RecipeCard = ({
             </Text>
           </View>
         </View>
-      </View>
+      </Pressable>
     </TouchableOpacity>
   );
 };
