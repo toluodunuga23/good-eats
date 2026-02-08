@@ -18,6 +18,16 @@ export default function TabLayout() {
       ),
     }}
     />
+         <Tabs.Screen
+        name="recipe"
+        options={{
+          title: "Recipe",
+          headerShown: false,
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="book-outline" size={28} color={color} />
+          ),
+        }}
+      />
     <Tabs.Screen
     name="grocery"
     options={{
@@ -48,16 +58,7 @@ export default function TabLayout() {
           ),
         }}
       />
-      <Tabs.Screen
-        name="recipes"
-        options={{
-          title: "Recipes",
-          headerShown: false,
-          tabBarIcon: ({ color }) => (
-            <Ionicons name="restaurant-outline" size={28} color={color} />
-          ),
-        }}
-      /> */}
+  */}
       <Tabs.Screen
         name="profile"
         options={{

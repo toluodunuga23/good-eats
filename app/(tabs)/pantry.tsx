@@ -5,6 +5,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Button,
 } from "react-native";
 
 const Pantry = () => {
@@ -84,9 +85,10 @@ const Pantry = () => {
 
   return (
     <SafeAreaView className="flex-1" style={{ backgroundColor: "#FFF8F6" }}>
-      <Text className="text-xl font-bold text-center text-gray-900 px-4 mt-10 ">
-        Pantry
-      </Text>
+            <View className="flex flex-row items-center justify-between mt-10">
+            <Text className="text-2xl font-bold text-gray-900 px-4 ">Pantry</Text>
+           <Button title="+ Add grocery" color="#E95322"  />
+         </View>
       <Text className="text-md font-bold text-gray-900 px-4 mt-10">
         Vegatables
       </Text>

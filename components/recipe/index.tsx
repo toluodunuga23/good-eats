@@ -1,3 +1,8 @@
+// Ispo: https://dribbble.com/shots/25242455-Masakin-Food-Recipes-Mobile-App
+// https://dribbble.com/shots/17443205-Air-Fryer-app
+// https://dribbble.com/shots/15794084-Food-Mobile-App
+
+
 
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useState } from "react";

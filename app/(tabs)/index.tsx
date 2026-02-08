@@ -2,7 +2,10 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { useRef, useState } from 'react';
 import {
   Dimensions,
+  FlatList,
   Image,
+  ImageSourcePropType,
+  Linking,
   SafeAreaView,
   ScrollView,
   StyleSheet,
@@ -12,11 +15,16 @@ import {
 } from "react-native";
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Modalize } from 'react-native-modalize';
+import breakfast from "../../assets/images/english-breakfast.png";
+import lunch from "../../assets/images/lunch-box.png";
+import dinner from "../../assets/images/dinner-icon.png";
+import dessert from "../../assets/images/dessert.png";
 import { RecipeCard } from "../../components/recipe";
 import { recipes } from "../../mock/receipe";
 import { Recipe } from "../../types/receipe";
 
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
+const widthScreen = Dimensions.get('window').width;
 
 export default function Index() {
   const modalRef = useRef<Modalize>(null);
@@ -27,6 +35,20 @@ export default function Index() {
     setSelectedRecipe(recipe);
     modalRef?.current?.open();
   };
+
+  const mealTypes = [{
+    name: "Breakfast",
+    image: breakfast,
+  }, {
+    name: "Lunch",
+    image: lunch,
+  }, {
+    name: "Dinner",
+    image: dinner,
+  }, {
+    name: "Dessert",
+    image: dessert,
+  }];
 
   const renderModalContent = () => {
     if (!selectedRecipe) return null;
@@ -134,9 +156,12 @@ export default function Index() {
 
           <View className="flex-col   mt-4 ">
             <View className="flex-row justify-between items-start mb-4 mt-4 gap-4 px-6">
+              <View className="flex-col items-start gap-2">
               <Text className="text-xl font-bold text-gray-900">
-                Recommended for You
+                 🥘Recipes for You
               </Text>
+              <Text className="text-xs  text-gray-500 ml-3">Last updated 1 hour ago</Text>
+              </View>
               <TouchableOpacity>
                 <Text className="text-sm font-bold" style={{ color: "#E95322" }}>
                   See All →
@@ -160,8 +185,29 @@ export default function Index() {
               ))}
             </ScrollView>
           </View>
-          <View className="flex-row justify-between items-start mb-4 mt-4 gap-4 px-6">
-            <Text className="text-xl font-bold text-gray-900">Trending Recipes</Text>
+          <Text className="text-xl font-bold text-gray-900 ml-4 mt-10">Browse Recipes</Text>
+          <View style={testStyle.container}>
+            <FlatList
+              data={mealTypes}
+              renderItem={({ item }) => (
+                <View style={testStyle.card} className=" bg-white border border-gray-200  rounded-xl px-3 py-9 gap-2   ">
+                  <Image source={item.image as ImageSourcePropType} style={{ height: 40, width: 40 }} />
+                  <Text className="text-xl font-bold text-center" style={{ color: "black" }}>{item.name}</Text>
+                </View>
+              )}
+              keyExtractor={(item) => item.name}
+              numColumns={2}
+              columnWrapperStyle={testStyle.columnStyles}
+            />
+            <TouchableOpacity
+              onPress={() => Linking.openURL('https://www.flaticon.com/free-icons/english-breakfast')}
+              
+              className="mt-2 mb-6"
+            >
+              <Text className="text-xs text-gray-400 text-center">
+                Icons by Freepik - Flaticon
+              </Text>
+            </TouchableOpacity>
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -300,4 +346,22 @@ const modalStyles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '700',
   },
-});
+})
+
+const testStyle = StyleSheet.create({
+  container: {
+    paddingHorizontal: 23,
+
+    // gap: 10,
+  },
+  card: {
+    // width: widthScreen / 2 - 10,
+    width: widthScreen / 2 - 40,
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  columnStyles: {
+    justifyContent: "space-between",
+    marginVertical: 20,
+  }
+})
